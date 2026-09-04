@@ -25,6 +25,8 @@ public class CDP extends JFrame {
      private JPanel PainelDificuldade;
      private JPanel PainelHabilidades;
      private JPanel PainelCriarELimpar;
+     private JPanel PainelNome;
+     private JPanel PainelClasse;
 
      public CDP() {
           setTitle("Criador de Personagens");
@@ -36,19 +38,27 @@ public class CDP extends JFrame {
           PainelEsquerdo.setLayout(new BoxLayout(PainelEsquerdo, BoxLayout.Y_AXIS));
           PainelEsquerdo.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
-          JLabel Nome = new JLabel();
-          NomeTxt = new JTextField(15);
+          PainelNome = new JPanel(new FlowLayout(FlowLayout.LEFT, 5 , 0));
+          PainelNome.setAlignmentX(Component.LEFT_ALIGNMENT);
+          JLabel Nome = new JLabel("Nome do Personagem:");
+          NomeTxt = new JTextField(12);
           NomeTxt.setEditable(true);
           NomeTxt.setRequestFocusEnabled(true);
+          PainelNome.add(Nome);
+          PainelNome.add(NomeTxt);
 
-          JLabel Classe = new JLabel();
+          PainelClasse = new JPanel(new FlowLayout(FlowLayout.LEFT, 5 , 0));
+          PainelClasse.setAlignmentX(Component.LEFT_ALIGNMENT);
+          JLabel Classe = new JLabel("Classe: ");
           SelecionarClasse = new JComboBox<>();
           SelecionarClasse.addItem("Mago");
           SelecionarClasse.addItem("Bárbaro");
           SelecionarClasse.addItem("Ladrão");
           SelecionarClasse.addItem("Clerigo");
+          PainelClasse.add(Classe);
+          PainelClasse.add(SelecionarClasse);
 
-          JLabel Dificulade = new JLabel();
+          JLabel Dificulade = new JLabel("Nivel de dificulade:");
           Facil = new JRadioButton("Fácil");
           Medio = new JRadioButton("Médio");
           Dificil = new JRadioButton("Dificil");
@@ -57,29 +67,35 @@ public class CDP extends JFrame {
           SelecionarDificuldade.add(Medio);
           SelecionarDificuldade.add(Dificil);
 
-          PainelDificuldade = new JPanel(new FlowLayout(FlowLayout.LEFT));
+          PainelDificuldade = new JPanel();
+          PainelDificuldade.setLayout(new BoxLayout(PainelDificuldade, BoxLayout.Y_AXIS));
+          PainelDificuldade.setAlignmentX(Component.LEFT_ALIGNMENT);
           PainelDificuldade.add(Facil);
           PainelDificuldade.add(Medio);
           PainelDificuldade.add(Dificil);
 
-          JLabel Habilidade = new JLabel();
+          JLabel Habilidade = new JLabel("Habilidades:");
+          Habilidade.setAlignmentX(Component.LEFT_ALIGNMENT);
           Magia = new JCheckBox("Magia");
           Cura = new JCheckBox("Cura");
           Furtividade = new JCheckBox("Furtividade");
           Forca = new JCheckBox("Força");
 
-          PainelHabilidades = new JPanel(new GridLayout(2, 2));
+          PainelHabilidades = new JPanel(new GridLayout(4, 1));
+          PainelHabilidades.setAlignmentX(Component.LEFT_ALIGNMENT);
           PainelHabilidades.add(Magia);
           PainelHabilidades.add(Cura);
           PainelHabilidades.add(Furtividade);
           PainelHabilidades.add(Forca);
 
-          JLabel NivelIincial = new JLabel();
+          JLabel NivelIincial = new JLabel("Nível inicial:");
+          NivelIincial.setAlignmentX(Component.LEFT_ALIGNMENT);
           SelecionarNivelInicial = new JSlider(1, 10, 1);
           SelecionarNivelInicial.setMajorTickSpacing(1);
           SelecionarNivelInicial.setPaintTicks(true);
           SelecionarNivelInicial.setPaintLabels(true);
           SelecionarNivelInicial.setSnapToTicks(true);
+          SelecionarNivelInicial.setAlignmentX(Component.LEFT_ALIGNMENT);
           JTextArea ValordoNivel = new JTextArea("" + SelecionarNivelInicial.getValue());
 
           SelecionarNivelInicial.addChangeListener(new ChangeListener() {
@@ -169,14 +185,14 @@ public class CDP extends JFrame {
 
           PainelDireito.add(new JScrollPane(ResumoDoPersonagemTxt), BorderLayout.CENTER);
 
-          PainelCriarELimpar = new JPanel();
+          PainelCriarELimpar = new JPanel(new FlowLayout(FlowLayout.CENTER));
+          PainelCriarELimpar.setAlignmentX(Component.LEFT_ALIGNMENT);
           PainelCriarELimpar.add(CriarPersonagem);
           PainelCriarELimpar.add(LimparCampos);
-          PainelEsquerdo.add(Nome);
-          PainelEsquerdo.add(NomeTxt);
-          PainelEsquerdo.add(Box.createVerticalStrut(8));
-          PainelEsquerdo.add(Classe);
-          PainelEsquerdo.add(SelecionarClasse);
+
+          PainelEsquerdo.add(PainelNome);
+          PainelEsquerdo.add(Box.createVerticalStrut(5));
+          PainelEsquerdo.add(PainelClasse);
           PainelEsquerdo.add(Box.createVerticalStrut(8));
           PainelEsquerdo.add(Dificulade);
           PainelEsquerdo.add(PainelDificuldade);
